@@ -14,8 +14,8 @@ uint8_t pre_rotary_status = 1;
 //this function should be called initially once to make the encoder data and clock pin as input open drain (with pullup)
 void init_encoder(void)
 {
-  pinMode(DT_PIN, INPUT_PULLUP);
-  pinMode(CL_PIN, INPUT_PULLUP);
+  pinMode(DT_PIN, INPUT_PULLUP);      //you can write hardware specific statement to make the IO input/open drain (with pullup)
+  pinMode(CL_PIN, INPUT_PULLUP);      //you can write hardware specific statement to make the IO input/open drain (with pullup)
 }
 
 //this function reads the encoder data input and returns the 0/1 integer value
