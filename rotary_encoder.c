@@ -1,33 +1,45 @@
 //this code works with all microcontrollers to read rotary encoder's rotation (clicks) in both directions
 //this code is written for arduino IDE
 
-#define DT_PIN        7
-#define CL_PIN        8
+#define DT_PIN        7      //pin number for encoder data pin
+#define CL_PIN        8      //pin number for encoder clock pin
 
+//these variables must be declared global
 bool high_detected = false;
 bool low_detected = false;
 bool mid_detected = false;
 uint8_t rotary_status = 1;
 uint8_t pre_rotary_status = 1;
 
+//this function should be called initially once to make the encoder data and clock pin as input open drain (with pullup)
+void init_encoder(void)
+{
+  pinMode(DT_PIN, INPUT_PULLUP);
+  pinMode(CL_PIN, INPUT_PULLUP);
+}
+
+//this function reads the encoder data input and returns the 0/1 integer value
 uint8_t read_rotary_dt(void)
 {
-  if(digitalRead(DT_PIN) == HIGH)
+  if(digitalRead(DT_PIN) == HIGH)    //you can write hardware specific statement here to read the IO pin
   {
     return 1;
   }
   return 0;
 }
 
+//this function reads the encoder clock input and returns the 0/1 integer value
 uint8_t read_rotary_clk(void)
 {
-  if(digitalRead(CL_PIN) == HIGH)
+  if(digitalRead(CL_PIN) == HIGH)    //you can write hardware specific statement here to read the IO pin
   {
     return 1;
   }
   return 0;
 }
 
+//this is the function that should be called in a loop with an interval of ~1-6 milliseconds
+//everytime encoder is clicked the task will be performed inside this function (check below)
 void read_encoder(void)
 {
   uint8_t rclk = read_rotary_clk();
@@ -75,8 +87,9 @@ void read_encoder(void)
         {
           if(low_detected)
           {
-            //do the rotary low operation (counter clockwise)
-            bk8000l_vol_down();
+            //do any action below this line on counter clockwise click
+            Serial.println("CCW Click");
+            //....
             high_detected = false;
             low_detected = false;
             mid_detected = false;
@@ -86,8 +99,9 @@ void read_encoder(void)
         {
           if(high_detected)
           {
-            //do the rotary high operation (clockwise)
-            bk8000l_vol_down();
+            //do any action below this line on clockwise click
+            Serial.println("CW Click");
+            //....
             high_detected = false;
             low_detected = false;
             mid_detected = false;
