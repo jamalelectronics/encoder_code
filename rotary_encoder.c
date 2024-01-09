@@ -1,4 +1,5 @@
 //this code works with all microcontrollers to read rotary encoder's rotation (clicks) in both directions
+//this code is written for arduino IDE
 
 #define DT_PIN        7
 #define CL_PIN        8
