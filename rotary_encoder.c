@@ -88,8 +88,8 @@ void read_encoder(void)
           if(low_detected)
           {
             //do any action below this line on counter clockwise click
-            Serial.println("CCW Click");
-            //....
+            Serial.println("CCW Click");      //you can write any code here that you want to execute
+            //.... 
             high_detected = false;
             low_detected = false;
             mid_detected = false;
