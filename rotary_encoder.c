@@ -100,7 +100,7 @@ void read_encoder(void)
           if(high_detected)
           {
             //do any action below this line on clockwise click
-            Serial.println("CW Click");
+            Serial.println("CW Click");      //you can write any code here that you want to execute
             //....
             high_detected = false;
             low_detected = false;
