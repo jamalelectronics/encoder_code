@@ -11,14 +11,14 @@ bool mid_detected = false;
 uint8_t rotary_status = 1;
 uint8_t pre_rotary_status = 1;
 
-//this function should be called initially once to make the encoder data and clock pin as input open drain (with pullup)
+////// this function should be called initially once to make the encoder data and clock pin as input open drain (with pullup) //////
 void init_encoder(void)
 {
   pinMode(DT_PIN, INPUT_PULLUP);      //you can write hardware specific statement to make the IO input/open drain (with pullup)
   pinMode(CL_PIN, INPUT_PULLUP);      //you can write hardware specific statement to make the IO input/open drain (with pullup)
 }
 
-//this function reads the encoder data input and returns the 0/1 integer value
+////// this function reads the encoder data input and returns the 0/1 integer value //////
 uint8_t read_rotary_dt(void)
 {
   if(digitalRead(DT_PIN) == HIGH)    //you can write hardware specific statement here to read the IO pin
@@ -28,7 +28,7 @@ uint8_t read_rotary_dt(void)
   return 0;
 }
 
-//this function reads the encoder clock input and returns the 0/1 integer value
+////// this function reads the encoder clock input and returns the 0/1 integer value //////
 uint8_t read_rotary_clk(void)
 {
   if(digitalRead(CL_PIN) == HIGH)    //you can write hardware specific statement here to read the IO pin
@@ -38,8 +38,8 @@ uint8_t read_rotary_clk(void)
   return 0;
 }
 
-//this is the function that should be called in a loop with an interval of ~1-6 milliseconds
-//everytime encoder is clicked the task will be performed inside this function (check below)
+////// this is the function that should be called in a loop with an interval of ~1-6 milliseconds //////
+////// everytime encoder is clicked the task will be performed inside this function (check below) //////
 void read_encoder(void)
 {
   uint8_t rclk = read_rotary_clk();
